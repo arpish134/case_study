@@ -1,0 +1,6 @@
+storeId,sku,productName,price,effectiveDate
+STORE-101,SKU-A1,Wireless Mouse,25.99,2026-04-15
+STORE-101,SKU-B2,Mechanical Keyboard,89.50,2026-04-15
+STORE-102,SKU-A1,Wireless Mouse,24.99,2026-04-15
+STORE-102,SKU-C3,USB-C Hub,35.00,2026-04-15
+STORE-999,SKU-X9,Gaming Monitor,299.99,2026-04-15
