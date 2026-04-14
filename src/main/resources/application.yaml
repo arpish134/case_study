@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: global-pricing-system
+
+  # 1. Database Configuration (MySQL)
+  datasource:
+    url: jdbc:mysql://localhost:3306/pricing_db?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA & Hibernate Settings
+  jpa:
+    hibernate:
+      ddl-auto: update # Use 'validate' in production!
+    show-sql: false # Set to true to debug queries
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  # 2. Apache Kafka Configuration
+  kafka:
+    bootstrap-servers: localhost:9092 # Assuming a local Kafka instance
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: pricing-batch-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  # 3. Spring Batch Configuration
+  batch:
+    jdbc:
+      initialize-schema: always # Creates Spring Batch metadata tables automatically
+
+  # 4. File Upload Limits (Important for massive CSVs)
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 55MB
+
+server:
+  port: 8080
